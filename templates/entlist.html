@@ -1,0 +1,44 @@
+ 
+ {% load static %}
+ <link rel="stylesheet" href= "{%static 'css/index.css' %}">
+
+  
+	<table class="table table-hover table-striped table-bordered table-rwd">
+		<thead class="thead-dark">
+			<tr class="tr-only-hide"> 
+			<th>日期</th>
+			<th>CVD08</th>
+			<th>CVD09</th>
+			<th>CVD10</th>
+			<th>CVD11</th>
+			<th>CVD12</th>
+			<th>CVD13</th>
+			<th>CVD14</th>
+			<th>CVD15</th>
+		</tr>
+		</thead>
+	{%for row in ent_list%}		 
+			{% if row.entity in "CVD08"%}
+			<tr>
+			<td data-title="日期"  >{{row.date1}}</td>
+			<td data-title="CVD08"  >{{row.lot_no}}<p>{{row.current_status}}</td>
+			{%elif row.entity in "CVD09"%}			
+			<td data-title="CVD09"  >{{row.lot_no}}<p>{{row.current_status}}</td>
+			{%elif row.entity in "CVD10"%}			
+			<td data-title="CVD10"  >{{row.lot_no}}<p>{{row.current_status}}</td>
+			{%elif row.entity in "CVD11"%}			
+			<td data-title="CVD11" >{{row.lot_no}}<p>{{row.current_status}}</td>
+			{%elif row.entity in "CVD12"%}			
+			<td data-title="CVD12"  >{{row.lot_no}}<p>{{row.current_status}}</td>
+			{%elif row.entity in "CVD13"%}			
+			<td data-title="CVD13" >{{row.lot_no}}<p>{{row.current_status}}</td>
+			{%elif row.entity in "CVD14"%}			
+			<td data-title="CVD14"  >{{row.lot_no}}<p>{{row.current_status}}</td>
+			{%elif row.entity in "CVD15"%}			
+			<td data-title="CVD15" >{{row.lot_no}}<p>{{row.current_status}}</td>
+			</tr>
+			{%endif%}		   
+	{%endfor%}
+	</table>
+
+ 

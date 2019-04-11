@@ -1,0 +1,49 @@
+<html>
+<head><title>msg_board</title>
+<style type="text/css">
+table{border:3 solid black; border-collapse:collapse}
+table th, table td{border:2 solid black}
+</style>
+ 
+</head>
+<body>
+<h3>Message:</h3>
+{% if post_list %}
+    <table id = "msgs">
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Author</th>
+            <th>Ip</th>
+            <th>Time</th>
+            <th>Click</th>
+        </tr>
+    {%for post in post_list %}
+        <tr>
+            <td>{{post.title}}</td>
+            <td>{{post.date1}}</td>
+            
+        </tr>
+    {% endfor%}
+    </table>
+    {% if is_paginated %}
+    <div class="pagination">
+        <span class="page-links">
+            {% if page_obj.has_previous %}
+                <a href="/mysite?page={{ page_obj.previous_page_number }}">上一页</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="/mysite?page={{ page_obj.next_page_number }}">下一页</a>
+            {% endif %}
+            <span class="page-current">
+                第{{ page_obj.number }}页 ，工{{ page_obj.paginator.num_pages }}页。
+            </span>
+        </span>
+    </div>
+    {%endif%}
+{% else %}
+<p>No msgs !!!</p>
+{% endif %}
+</body>
+</html>
+ 

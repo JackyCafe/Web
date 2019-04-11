@@ -1,0 +1,49 @@
+ {% extends 'base.html' %}
+ {% block title %}Todo List {% endblock %}
+ {% block mesg %}我是訊息 {% endblock %}
+ {% load static %}
+ 
+ <link rel="stylesheet" href= "{%static 'css/table.css' %}">
+ 
+{% block content %} 
+	
+ 
+	{%for row in post_list%}
+		
+			 {% cycle " <div class='row'> <div class='col-md-12'><div class='col-md-3'>" "<div class='col-md-3'>" "<div class='col-md-3'>" "<div class='col-md-3'>" %}
+        <div class="panel panel-primary">
+             <div class="panel-heading" style="padding-top: 6.5px;">標題:    {{row.post_id.title}}</div>
+			 <h6 class="panel-heading pull-right" style="padding-top: 6.5px;">{{ row.post_id.date1 }}</h6> 			 
+             <div class="panel-body">內文:{{row.content}}    </div>
+			 <div class="panel-body">action :{{row.action}}    </div>
+			<div class="panel-body"> 到期日: {{row.due_date}}  </div>
+		     附件:<a href="../media/{{row.document }}">{{  row.document }}</a></td>
+        </div>
+        {% cycle "</div>" "</div>"  "</div>"  "</div></div></div>" %}
+
+      {%endfor%}	  
+	 
+
+{%endblock %}
+{%block pageindex%}
+ {% if is_paginated %}
+	  <p>
+    <ul class="pagination">
+       
+            {% if page_obj.has_previous %}
+              <li>  <a href="/mblog?page={{ page_obj.previous_page_number }}">上一页</a></li>
+            {% endif %}
+			 
+ 
+            {% if page_obj.has_next %}
+             <li>   <a href="/mblog?page={{ page_obj.next_page_number }}">下一页</a></li>
+            {% endif %}
+            <li>		
+
+                第{{ page_obj.number }}页 ，{{ page_obj.paginator.num_pages }}页。
+            </li>
+         
+    </ul>
+    {%endif%}
+
+{%endblock%}	

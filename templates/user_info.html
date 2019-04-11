@@ -1,0 +1,25 @@
+<h3>添加用戶</h3>
+<form method="GET" action="/user_info/">
+    <input type="text" name="user" />
+    <input type="text" name="pwd" />
+
+    <select name="group_id">
+        {% for item in group_list %}
+            <option value="{{ item.uid }}">{{ item.caption }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="submit" value="添加"/>
+</form>
+
+<h3>用戶列表</h3>
+<ul>
+    {% for row in user_list %}
+        <li>
+            <a href="/userdetail-{{ row.id }}/">{{ row.username }}</a> |
+            <span> {{ row.user_group.caption }} </span>
+            <a href="/userdel-{{ row.id }}/">刪除</a> |
+            <a href="/useredit-{{ row.id }}/">編輯</a>
+        </li>
+    {% endfor %}
+</ul>
